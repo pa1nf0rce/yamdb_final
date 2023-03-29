@@ -1,31 +1,19 @@
-from django.shortcuts import get_object_or_404
+from api.permission import (AdminOrReadOnly, AdminOrStaffPermission,
+                            AuthorOrModerPermission)
+from api.serializers import (AuthSignUpSerializer, AuthTokenSerializer,
+                             CategorySerializer, CommentSerializer,
+                             GenreSerializer, ReadTitleSerializer,
+                             ReviewSerializer, TitleSerializer, UserSerializer)
+from api.utils import send_confirmation_code_to_email
 from django.db import IntegrityError
-
+from django.shortcuts import get_object_or_404
 from rest_framework import filters, permissions, status, viewsets
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-
 from reviews.models import Category, Comment, Genre, Review, Title, User
-from api.permission import (
-    AdminOrReadOnly,
-    AdminOrStaffPermission,
-    AuthorOrModerPermission,
-)
-from api.serializers import (
-    AuthSignUpSerializer,
-    AuthTokenSerializer,
-    CategorySerializer,
-    CommentSerializer,
-    GenreSerializer,
-    ReadTitleSerializer,
-    ReviewSerializer,
-    TitleSerializer,
-    UserSerializer
-)
-from api.utils import send_confirmation_code_to_email
 
 
 @api_view(['POST'])
