@@ -75,7 +75,8 @@ class TitleViewSet(viewsets.ModelViewSet):
             queryset = Title.objects.filter(name__icontains=name)
         if category is not None:
             queryset = Title.objects.filter(category__slug=category)
-        return Title.objects.all()
+        queryset = Title.objects.all()
+        return queryset
 
 
 class GenreViewSet(viewsets.ModelViewSet):
