@@ -62,7 +62,6 @@ class TitleViewSet(viewsets.ModelViewSet):
         return ReadTitleSerializer
 
     def get_queryset(self):
-        queryset = Title.objects.all()
         genre = self.request.query_params.get('genre')
         year = self.request.query_params.get('year')
         name = self.request.query_params.get('name')
@@ -76,7 +75,7 @@ class TitleViewSet(viewsets.ModelViewSet):
             queryset = Title.objects.filter(name__icontains=name)
         if category is not None:
             queryset = Title.objects.filter(category__slug=category)
-        return queryset
+        return Title.objects.all()
 
 
 class GenreViewSet(viewsets.ModelViewSet):
