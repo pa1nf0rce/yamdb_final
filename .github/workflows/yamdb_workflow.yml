@@ -1,9 +1,7 @@
 
 name: YamDb workflow
 
-on:
-  push:
-    branches: [main]
+on: [push]
 
 jobs:
 
