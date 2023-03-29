@@ -62,6 +62,7 @@ class TitleViewSet(viewsets.ModelViewSet):
         return ReadTitleSerializer
 
     def get_queryset(self):
+        queryset = Title.objects.all()
         genre = self.request.query_params.get('genre')
         year = self.request.query_params.get('year')
         name = self.request.query_params.get('name')
